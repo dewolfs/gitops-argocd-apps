@@ -1,0 +1,20 @@
+prometheus:
+  server:
+    global:
+      scrape_interval: 5s
+      scrape_timeout: 3s
+  serverFiles:
+    prometheus.yml:
+      scrape_configs:
+        - job_name: 'argocd-metrics'
+          static_configs:
+            - targets: 
+              - argocd-metrics.argocd.svc.cluster.local:8082
+        - job_name: 'argocd-server-metrics'
+          static_configs:
+            - targets: 
+              - argocd-server-metrics.argocd.svc.cluster.local:8083
+        - job_name: 'argocd-repo-server-metrics'
+          static_configs:
+            - targets: 
+              - argocd-repo-server.argocd.svc.cluster.local:8084

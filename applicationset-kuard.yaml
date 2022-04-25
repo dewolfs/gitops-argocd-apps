@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: kuard
+  namespace: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - cluster: dev
+        url: https://aks-dev-00-rg-dev-001-bc1d24-d75e80e0.hcp.germanywestcentral.azmk8s.io:443
+      - cluster: tst
+        url: https://aks-tst-00-rg-tst-001-bc1d24-9e1dd4e1.hcp.germanywestcentral.azmk8s.io:443
+      - cluster: prd
+        url: https://aks-prd-00-rg-prd-001-bc1d24-e1aeabbb.hcp.germanywestcentral.azmk8s.io:443
+  template:
+    metadata:
+      name: '{{cluster}}-kuard'
+    spec:
+      project: default
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
+      source:
+        repoURL: https://github.com/dewolfs/gitops-argocd-apps.git
+        targetRevision: HEAD
+        path: kuard/overlays/{{cluster}}
+      destination:
+        server: '{{url}}'
+        namespace: '{{cluster}}-kuard'
