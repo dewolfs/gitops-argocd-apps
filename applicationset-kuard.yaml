@@ -8,11 +8,11 @@ spec:
   - list:
       elements:
       - cluster: dev
-        url: https://aks-dev-00-rg-dev-001-bc1d24-0ecd034a.hcp.germanywestcentral.azmk8s.io:443
+        url: https://aks-dev-00-rg-dev-001-bc1d24-e1bbbd79.hcp.germanywestcentral.azmk8s.io:443
       - cluster: tst
-        url: https://aks-tst-00-rg-tst-001-bc1d24-1d2c1588.hcp.germanywestcentral.azmk8s.io:443
+        url: https://aks-tst-00-rg-tst-001-bc1d24-ee712c19.hcp.germanywestcentral.azmk8s.io:443
       - cluster: prd
-        url: https://aks-prd-00-rg-prd-001-bc1d24-0f3f4f5a.hcp.germanywestcentral.azmk8s.io:443
+        url: https://aks-prd-00-rg-prd-001-bc1d24-3fdce0a2.hcp.germanywestcentral.azmk8s.io:443
   template:
     metadata:
       name: '{{cluster}}-kuard'
